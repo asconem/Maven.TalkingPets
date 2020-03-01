@@ -8,6 +8,6 @@ public class Cow extends Pet {
 
     @Override
     public String speak() {
-        return "moo";
+        return "says moo!";
     }
 }

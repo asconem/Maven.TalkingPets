@@ -11,28 +11,29 @@ public class PetCreation {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome, please enter the amount of pets you have to begin.");
         int numOfPets = sc.nextInt();
+        System.out.println("Wow, you have " + numOfPets + " pets? I can't wait to hear about them!\n");
         sc.nextLine();
-        List<Pet> petList = new ArrayList<>();
+        Pet[] petList = new Pet[numOfPets];
 
         for (int i = 0; i < numOfPets; i++){
-            System.out.println("What kind of pet is this?");
+            System.out.println("What kind of pet is this? Type 'dog,' 'cat,' or 'cow.'");
             String petType = sc.nextLine();
-            System.out.println("What is the name of each of your pets?");
+            System.out.println("What is the name of this pet?");
             String petName = sc.nextLine();
 
             if (petType.equalsIgnoreCase("Dog")) {
-                petList.set(i, new Dog(petName));
+                petList[i] = new Dog(petName);
             } else if (petType.equalsIgnoreCase("Cat")) {
-                petList.set(i, new Cat(petName));
+                petList[i] = new Cat(petName);
             } else if (petType.equalsIgnoreCase("Cow")) {
-                petList.set(i, new Cow(petName));
+                petList[i] = new Cow(petName);
             } else {
                 System.out.println("Invalid entry.");
             }
         }
 
         for (int j = 0; j < numOfPets; j++) {
-            System.out.println(petList.get(j).getPetName() + "" + petList.get(j).speak());
+            System.out.println(petList[j].getPetName() + " " + petList[j].speak());
         }
     }
 }
