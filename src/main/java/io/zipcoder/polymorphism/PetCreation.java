@@ -1,39 +1,49 @@
 package io.zipcoder.polymorphism;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class PetCreation {
+    Scanner input = new Scanner(System.in);
 
     public void userInput() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Welcome, please enter the amount of pets you have to begin.");
-        int numOfPets = sc.nextInt();
-        System.out.println("Wow, you have " + numOfPets + " pets? I can't wait to hear about them!\n");
-        sc.nextLine();
-        Pet[] petList = new Pet[numOfPets];
-
-        for (int i = 0; i < numOfPets; i++){
-            System.out.println("What kind of pet is this? Type 'dog,' 'cat,' or 'cow.'");
-            String petType = sc.nextLine();
-            System.out.println("What is the name of this pet?");
-            String petName = sc.nextLine();
-
-            if (petType.equalsIgnoreCase("Dog")) {
-                petList[i] = new Dog(petName);
-            } else if (petType.equalsIgnoreCase("Cat")) {
-                petList[i] = new Cat(petName);
-            } else if (petType.equalsIgnoreCase("Cow")) {
-                petList[i] = new Cow(petName);
-            } else {
-                System.out.println("Invalid entry.");
+        Integer numOfPets = input.nextInt();
+        ArrayList<Pet> petList = new ArrayList<Pet>();
+        for (int i = 1; i <= numOfPets; i++) {
+            String petType = getTypeOfPet().toLowerCase();
+            String petName = getPetName();
+            if (petType.equals("dog")) {
+                Dog dog = new Dog(petName);
+                petList.add(dog);
+            }
+            if (petType.equals("cat")) {
+                Cat cat = new Cat(petName);
+                petList.add(cat);
+            }
+            if (petType.equals("cow")) {
+                Cow cow = new Cow(petName);
+                petList.add(cow);
+            }
+            if (petType.equals("pet")) {
+                Pet pet = new Pet(petName);
+                petList.add(pet);
             }
         }
-
-        for (int j = 0; j < numOfPets; j++) {
-            System.out.println(petList[j].getPetName() + " " + petList[j].speak());
+        for (int i = 1; i <= petList.size(); i++) {
+            System.out.println(petList.get(i-1).getName()+ " "+ petList.get(i-1).speak());
         }
+    }
+
+    public String getTypeOfPet() {
+        System.out.println("What kind of pet is it? Enter cat, dog, or cow.");
+        String petType = input.next();
+        return petType;
+    }
+
+    public String getPetName() {
+        System.out.println("What is the name of this pet?");
+        String petName = input.next();
+        return petName;
     }
 }

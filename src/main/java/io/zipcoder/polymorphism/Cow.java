@@ -2,12 +2,14 @@ package io.zipcoder.polymorphism;
 
 public class Cow extends Pet {
 
-    public Cow(String petName) {
-        super(petName);
+    public Cow(String name) {
+
+        super(name);
     }
 
     @Override
     public String speak() {
+
         return "says moo!";
     }
 }
